@@ -1,0 +1,19 @@
+name: useradd-base
+version: '0.1'
+summary: Make a user on UC16
+description: Use account-control to make a user on a UC16 system
+grade: stable
+confinement: strict
+passthrough:
+  base: core18
+
+apps:
+  useradd-base:
+    command: useradd-wrapper.sh
+    plugs: [account-control]
+
+parts:
+  scripts:
+    plugin: dump
+    source: .
+    prime: [useradd-wrapper.sh]
